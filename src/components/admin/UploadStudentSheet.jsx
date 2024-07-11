@@ -1,13 +1,15 @@
 import React, { useRef, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { uploadExcelSheet } from "../../redux/StudentSlice"
-import { IoMdCloudUpload } from "react-icons/io";
-
+import { IoMdCloudUpload } from "react-icons/io"
+import Loader from "../utils/Loader"
 
 const UploadStudentSheet = () => {
   const inputRef = useRef(null)
   const dispatch = useDispatch()
   const [excelFile, setExcelFile] = useState(null)
+
+  const { loading, status } = useSelector((state) => state?.students)
 
   const handleFileUpload = (files) => {
     if (files.length === 0) return
@@ -20,12 +22,15 @@ const UploadStudentSheet = () => {
   }
 
   return (
-    <div>
-      <div className="rounded-md bg-blue-50 py-16 px-32 border-dashed border-[#00c9d4] border-[2px]" onClick={handleInput}>
-      <div className="text-[75px] flex justify-center items-center text-blue-700 ">
-      <IoMdCloudUpload />
-      </div>
-        <p className="">
+    <div className="flex-1">
+      <div
+        className="rounded-md bg-blue-50 py-5 border-dashed border-cyan-600 border-[2px]"
+        onClick={handleInput}
+      >
+        <div className="text-[60px] flex justify-center items-center text-cyan-600 ">
+          <IoMdCloudUpload />
+        </div>
+        <p className="text-center">
           {excelFile ? excelFile.name : "Upload a sheet"}
         </p>
         <input
@@ -39,10 +44,20 @@ const UploadStudentSheet = () => {
       </div>
       <div className="flex justify-end my-2">
         <button
-          onClick={() => dispatch(uploadExcelSheet(excelFile))}
-          className="bg-[#00c9d4] rounded-lg px-[20px] py-[8px] "
+          onClick={() => {
+            dispatch(uploadExcelSheet(excelFile))
+            setExcelFile(null)
+          }}
+          className={`${
+            excelFile === null
+              ? "bg-cyan-200 text-black cursor-not-allowed"
+              : "bg-cyan-600 text-white cursor-pointer"
+          } rounded-lg px-[20px] py-[8px] flex justify-center ${
+            status === "uploading_sheet" && loading && "px-[35px]"
+          }`}
+          disabled={excelFile === null}
         >
-          Upload
+          {status === "uploading_sheet" && loading ? <Loader /> : "Upload"}
         </button>
       </div>
     </div>

@@ -4,7 +4,15 @@ import { LiaRupeeSignSolid } from "react-icons/lia"
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md"
 import { MdOutlineCheckBox } from "react-icons/md"
 
-const StudentRow = ({ e, i, feeType, setSendEmailTo, sendEmailTo }) => {
+const StudentRow = ({
+  e,
+  i,
+  feeType,
+  setSendEmailTo,
+  sendEmailTo,
+  emailIsSent,
+  setEmailIsSent,
+}) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isSelected, setIsSelected] = useState(false)
 
@@ -17,9 +25,16 @@ const StudentRow = ({ e, i, feeType, setSendEmailTo, sendEmailTo }) => {
     }
   }, [isSelected])
 
+  useEffect(() => {
+    if (emailIsSent) {
+      setIsSelected(false)
+      setEmailIsSent(false)
+    }
+  }, [emailIsSent])
+
   return (
     <div
-      className="grid text-lg items-center text-center capitalize cursor-pointer border-b pb-0.5"
+      className="grid text-lg items-center text-center capitalize cursor-pointer border-b pb-1"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => setIsSelected(!isSelected)}

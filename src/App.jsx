@@ -5,6 +5,8 @@ import Admin from "./pages/Admin"
 import { useDispatch } from "react-redux"
 import { getStudentsData } from "./redux/StudentSlice"
 import { getCirculars } from "./redux/CircularSlice"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -17,6 +19,13 @@ const App = () => {
 
   return (
     <div>
+      <ToastContainer
+        hideProgressBar
+        theme="colored"
+        newestOnTop
+        draggable={false}
+        toastStyle={{ color: "#333333" }}
+      />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

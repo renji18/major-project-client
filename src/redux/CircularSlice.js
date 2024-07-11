@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
+import { toast } from "react-toastify"
 
 // Uploads Circular
 export const uploadCircular = createAsyncThunk(
@@ -14,13 +15,12 @@ export const uploadCircular = createAsyncThunk(
         `${process.env.REACT_APP_SERVER_URL}/admin/circular/upload`,
         fileData
       )
-      return response
+      return response?.data
     } catch (error) {
       return rejectWithValue(error.response)
     }
   }
 )
-
 
 // Delete Circular
 export const deleteCircular = createAsyncThunk(
@@ -30,13 +30,12 @@ export const deleteCircular = createAsyncThunk(
       const response = await axios.delete(
         `${process.env.REACT_APP_SERVER_URL}/admin/circular/edit/${data}`
       )
-      return response
+      return response?.data
     } catch (error) {
       return rejectWithValue(error.response)
     }
   }
 )
-
 
 // Get All Circulars
 export const getCirculars = createAsyncThunk(
@@ -46,7 +45,7 @@ export const getCirculars = createAsyncThunk(
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/admin/circular/all`
       )
-      return response
+      return response?.data
     } catch (error) {
       return rejectWithValue(error.response)
     }
@@ -64,13 +63,16 @@ const circularSlice = createSlice({
   extraReducers: (builder) => {
     // Upload Circular Builder
     builder.addCase(uploadCircular.pending, (state) => {
+      state.status = "uploading_circular"
       state.loading = true
     })
     builder.addCase(uploadCircular.fulfilled, (state) => {
+      toast.success("Circular Uploaded Successfully")
       state.status = "Success"
       state.loading = false
     })
     builder.addCase(uploadCircular.rejected, (state, action) => {
+      toast.error("Error Uplading Circular")
       state.error = action.payload
       state.loading = false
       state.status = "Failed"
@@ -78,21 +80,24 @@ const circularSlice = createSlice({
 
     // Get All Students Builders
     builder.addCase(getCirculars.pending, (state) => {
+      state.status = "getting_circulars"
       state.loading = true
     })
     builder.addCase(getCirculars.fulfilled, (state, action) => {
-      state.data = action.payload.data.data
+      state.data = action.payload.data
       state.status = "Success"
       state.loading = false
     })
     builder.addCase(getCirculars.rejected, (state, action) => {
+      toast.error("Error Fetching Circulars")
       state.error = action.payload
       state.loading = false
       state.status = "Failed"
     })
 
-    // Send Email To Students Builders
+    // Delete Circular Builders
     builder.addCase(deleteCircular.pending, (state) => {
+      state.status = "deleting_circular"
       state.loading = true
     })
     builder.addCase(deleteCircular.fulfilled, (state) => {

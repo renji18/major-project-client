@@ -1,13 +1,16 @@
 import React, { useRef, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { uploadCircular } from "../../redux/CircularSlice"
 import { IoMdCloudUpload } from "react-icons/io"
+import Loader from "../utils/Loader"
 
 const UploadCircular = () => {
   const inputRef = useRef(null)
   const dispatch = useDispatch()
   const [circular, setCircular] = useState(null)
   const [name, setName] = useState("")
+
+  const { loading, status } = useSelector((state) => state?.circulars)
 
   const handleFileUpload = (files) => {
     if (files.length === 0) return
@@ -20,16 +23,18 @@ const UploadCircular = () => {
   }
 
   return (
-    <div>
+    <div className="flex-1">
       <div>
         <div
-          className="rounded-md bg-blue-50 py-16 px-32 border-dashed border-[#00c9d4] border-[2px]"
+          className="rounded-md bg-blue-50 py-5 border-dashed border-cyan-600 border-[2px]"
           onClick={handleInput}
         >
-          <div className="text-[75px] flex justify-center items-center text-blue-700 ">
+          <div className="text-[60px] flex justify-center items-center text-cyan-600 ">
             <IoMdCloudUpload />
           </div>
-          <p className="">{circular ? circular.name : "Upload a Circular"}</p>
+          <p className="text-center">
+            {circular ? circular.name : "Upload a Circular"}
+          </p>
           <input
             type="file"
             accept=".pdf,.jpg,.jpeg,.png"
@@ -49,12 +54,20 @@ const UploadCircular = () => {
       </div>
       <div className="flex justify-end">
         <button
-          onClick={() =>
-            dispatch(uploadCircular({ image: circular, name, by: "Mittal" }))
-          }
-          className="bg-[#00c9d4] rounded-lg px-[20px] py-[8px]"
+          onClick={() => {
+            dispatch(uploadCircular({ image: circular, name }))
+            setCircular(null)
+          }}
+          className={`${
+            circular === null
+              ? "bg-cyan-200 text-black cursor-not-allowed"
+              : "bg-cyan-600 text-white cursor-pointer"
+          } rounded-lg px-[20px] py-[8px] flex justify-center ${
+            status === "uploading_circular" && loading && "px-[35px]"
+          }`}
+          disabled={circular === null}
         >
-          Upload
+          {status === "uploading_circular" && loading ? <Loader /> : "Upload"}
         </button>
       </div>
     </div>
