@@ -113,7 +113,205 @@ const StudentData = () => {
         </div>
       </div>
 
-      <div className="space-y-3 ">
+      <div className="">
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
+        {data && data?.length > 0 ? (
+          data?.map((e, i) => (
+            <StudentRow
+              e={e}
+              i={i}
+              feeType={feeType}
+              key={e?._id}
+              setSendEmailTo={setSendEmailTo}
+              sendEmailTo={sendEmailTo}
+              emailIsSent={emailIsSent}
+              setEmailIsSent={setEmailIsSent}
+            />
+          ))
+        ) : (
+          <p className="text-center text-2xl font-medium pb-6 pt-3">
+            No Data to Show
+          </p>
+        )}
         {data && data?.length > 0 ? (
           data?.map((e, i) => (
             <StudentRow
@@ -149,7 +347,7 @@ const StudentData = () => {
               {status === "sending_email" && loading ? (
                 <Loader />
               ) : (
-                "Send Email"
+                `Send Email [${sendEmailTo.length}]`
               )}
             </button>
           </div>
