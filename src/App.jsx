@@ -5,8 +5,9 @@ import Admin from "./pages/Admin"
 import { useDispatch } from "react-redux"
 import { getStudentsData } from "./redux/StudentSlice"
 import { getCirculars } from "./redux/CircularSlice"
-import { ToastContainer, toast } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import SingleCircular from "./pages/SingleCircular"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -30,6 +31,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/circular/:id" element={<SingleCircular />} />
         </Routes>
       </BrowserRouter>
     </div>

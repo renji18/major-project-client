@@ -11,6 +11,7 @@ export const uploadCircular = createAsyncThunk(
       fileData.append("circular", data?.image)
       fileData.append("name", data?.name)
       fileData.append("by", data?.by)
+      fileData.append("_for", data?._for)
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/admin/circular/upload`,
         fileData

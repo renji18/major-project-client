@@ -9,6 +9,7 @@ const UploadCircular = () => {
   const dispatch = useDispatch()
   const [circular, setCircular] = useState(null)
   const [name, setName] = useState("")
+  const [_for, setFor] = useState("all")
 
   const { loading, status } = useSelector((state) => state?.circulars)
 
@@ -37,25 +38,42 @@ const UploadCircular = () => {
           </p>
           <input
             type="file"
-            accept=".pdf,.jpg,.jpeg,.png"
+            accept=".pdf"
             placeholder="Upload"
             className="hidden"
             ref={inputRef}
             onChange={(e) => handleFileUpload(e.target.files)}
           />
         </div>
-        <input
-          type="text"
-          placeholder="File Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-lg border-[2px] my-2 p-2 border-[#009cd4] "
-        />
+        <div className="flex items-center gap-3.5">
+          <select
+            onClick={(e) => setFor(e.target.value)}
+            defaultValue={_for}
+            className="bg-transparent rounded-lg border-[2px] my-2 cursor-pointer outline-none py-2 pl-2 border-[#009cd4]"
+          >
+            <option value="all">All Semesters</option>
+            <option value="1">1st Semester</option>
+            <option value="2">2nd Semester</option>
+            <option value="3">3rd Semester</option>
+            <option value="4">4th Semester</option>
+            <option value="5">5th Semester</option>
+            <option value="6">6th Semester</option>
+            <option value="7">7th Semester</option>
+            <option value="8">8th Semester</option>
+          </select>
+          <input
+            type="text"
+            placeholder="File Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full rounded-lg border-[2px] outline-none my-2 py-2 px-3 border-[#009cd4]"
+          />
+        </div>
       </div>
       <div className="flex justify-end">
         <button
           onClick={() => {
-            dispatch(uploadCircular({ image: circular, name }))
+            dispatch(uploadCircular({ image: circular, name, _for }))
             setCircular(null)
           }}
           className={`${
