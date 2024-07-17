@@ -15,7 +15,7 @@ const SingleCircular = () => {
   }, [location])
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center">
+    <div className="h-screen w-screen flex items-center justify-center py-[70px]">
       {file ? (
         <iframe
           src={file}

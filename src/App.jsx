@@ -8,6 +8,8 @@ import { getCirculars } from "./redux/CircularSlice"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import SingleCircular from "./pages/SingleCircular"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -28,11 +30,14 @@ const App = () => {
         toastStyle={{ color: "#333333" }}
       />
       <BrowserRouter>
+        <Navbar />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/circular/:id" element={<SingleCircular />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   )

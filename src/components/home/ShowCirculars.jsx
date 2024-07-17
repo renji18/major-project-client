@@ -7,27 +7,28 @@ const ShowCirculars = () => {
   const { data } = useSelector((state) => state?.circulars)
 
   return (
-    <div className="flex flex-col justify-center items-center gap-3 mt-6 tracking-wide">
+    <div className="flex flex-col justify-center items-center gap-3 tracking-wide">
       <p className="text-center text-[35px] font-bold">Circulars</p>
-      <div className="border-2 border-cyan-600 px-8">
+      <div className="border-2 border-cyan-600 bg-white/85 px-5">
         {data && data?.length > 0 ? (
           data?.map((e) => (
             <div
               key={e?._id}
-              className="border-b border-b-cyan-600 last:border-none py-4 sm:min-w-[400px] gap-10"
+              className="flex items-end justify-between border-b border-b-cyan-600 last:border-none py-2 sm:min-w-[400px] gap-10"
             >
               <p
-                className="hover:underline text-xl cursor-pointer"
+                className="hover:underline text-2xl cursor-pointer"
                 onClick={() =>
                   navigate(
-                    `/circular/${
-                      String(e?.image?.cloudinary_id).split("/")[1]
-                    }`,
-                    { state: { file: e?.image?.avatar } }
+                    `/circular/${String(e?.file?.cloudinary_id).split("/")[1]}`,
+                    { state: { file: e?.file?.avatar } }
                   )
                 }
               >
                 {e?.name}
+              </p>
+              <p className="text-base text-gray-500">
+                {e?.createdAt?.split("T")[0]}
               </p>
             </div>
           ))
@@ -42,3 +43,6 @@ const ShowCirculars = () => {
 }
 
 export default ShowCirculars
+
+// Hi my name is Mittal
+// [h,_my_name_,s_M, ttal]
