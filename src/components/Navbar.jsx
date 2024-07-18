@@ -17,7 +17,8 @@ const Navbar = () => {
     { title: "Events", path: "/" },
     { title: "Help", path: "/" },
     { title: "Contact Us", path: "/" },
-    { title: "Admin", path: "/admin" },
+    { title: "Upload", path: "/uploads" },
+    { title: "Students", path: "/students" },
   ]
 
   return (

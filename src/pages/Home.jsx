@@ -9,7 +9,7 @@ const Home = () => {
         className="w-full h-full object-cover -z-10"
         alt=""
       />
-      <div className="absolute right-10 bg-white/70 max-h-[60%] overflow-scroll border border-black rounded-lg p-5 ">
+      <div className="absolute right-10 bg-white/70 max-h-[60%] overflow-scroll rounded-lg p-5 ">
         <ShowCirculars />
       </div>
     </div>

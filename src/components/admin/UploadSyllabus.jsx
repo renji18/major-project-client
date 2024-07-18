@@ -1,30 +1,35 @@
-import React, { useRef, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { uploadCircular } from "../../redux/CircularSlice"
-import { IoMdCloudUpload } from "react-icons/io"
-import Loader from "../utils/Loader"
+import React, { useRef, useState } from 'react'
+import { IoMdCloudUpload } from 'react-icons/io'
+import { useDispatch, useSelector } from 'react-redux'
+import { uploadSyllabus } from '../../redux/SyllabusSlice'
+import Loader from '../utils/Loader'
 
-const UploadCircular = () => {
+const UploadSyllabus = () => {
   const inputRef = useRef(null)
   const dispatch = useDispatch()
-  const [circular, setCircular] = useState(null)
+  const [syllabus, setSyllabus] = useState(null)
+  const [_for, setFor] = useState("1")
   const [name, setName] = useState("")
-  const [_for, setFor] = useState("all")
 
   const { loading, status } = useSelector((state) => state?.circulars)
 
-  const handleFileUpload = (files) => {
-    if (files.length === 0) return
-    setCircular(files[0])
-  }
 
   const handleInput = () => {
     if (!inputRef) return
     inputRef.current.click()
   }
 
+  const handleFileUpload = (files) => {
+    if (files.length === 0) return
+    setSyllabus(files[0])
+  console.log(files);
+
+  }
+
+
   return (
-    <div className="flex-1">
+    <div className='px-60'>
+      <div className="flex-1">
       <div>
         <div
           className="rounded-md bg-blue-50 py-5 border-dashed border-[#00a384] border-[2px]"
@@ -34,7 +39,7 @@ const UploadCircular = () => {
             <IoMdCloudUpload />
           </div>
           <p className="text-center">
-            {circular ? circular.name : "Upload a Circular"}
+            {syllabus ? syllabus.name : "Upload Syllabus"}
           </p>
           <input
             type="file"
@@ -51,7 +56,6 @@ const UploadCircular = () => {
             defaultValue={_for}
             className="bg-transparent rounded-lg border-[2px] my-2 cursor-pointer outline-none py-2 pl-2 border-[#00a384]"
           >
-            <option value="all">All Semesters</option>
             <option value="1">1st Semester</option>
             <option value="2">2nd Semester</option>
             <option value="3">3rd Semester</option>
@@ -73,23 +77,22 @@ const UploadCircular = () => {
       <div className="flex justify-end">
         <button
           onClick={() => {
-            dispatch(uploadCircular({ image: circular, name, _for }))
-            setCircular(null)
+            dispatch(uploadSyllabus({ image: syllabus, name, _for }))
+            setSyllabus(null)
           }}
           className={`${
-            circular === null
+            syllabus === null
               ? "bg-cyan-100 text-black cursor-not-allowed"
               : "bg-[#00a384] text-white cursor-pointer"
-          } rounded-lg px-[20px] py-[8px] flex justify-center ${
-            status === "uploading_circular" && loading && "px-[35px]"
-          }`}
-          disabled={circular === null}
+          } rounded-lg px-[20px] py-[8px] flex justify-center`}
+          disabled={syllabus === null}
         >
           {status === "uploading_circular" && loading ? <Loader /> : "Upload"}
         </button>
       </div>
     </div>
+    </div>
   )
 }
 
-export default UploadCircular
+export default UploadSyllabus

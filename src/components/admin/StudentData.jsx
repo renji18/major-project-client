@@ -52,7 +52,7 @@ const StudentData = () => {
     if (tableRef.current) {
       const distanceFromTop = tableRef.current.getBoundingClientRect().top
       const screenHeight = window.innerHeight
-      const maxHeight = screenHeight - distanceFromTop - 20
+      const maxHeight = screenHeight - distanceFromTop - 100
       tableRef.current.style.maxHeight = `${maxHeight}px`
     }
   }
@@ -69,7 +69,7 @@ const StudentData = () => {
   return (
     <div
       ref={tableRef}
-      className="m-5 tracking-wide relative border-[2px] overflow-scroll border-cyan-600 rounded-md "
+      className="m-5 tracking-wide relative border-[2px] overflow-scroll border-[#00a384] rounded-md "
     >
       <div className="sticky bg-white top-0 p-2">
         <div
@@ -94,7 +94,7 @@ const StudentData = () => {
         </div>
 
         <div
-          className="grid pb-2 font-medium text-xl text-center capitalize mb-4 border-b-cyan-600 border-b"
+          className="grid pb-2 font-medium text-xl text-center capitalize mb-4 border-b-[#00a384] border-b"
           style={{ gridTemplateColumns: "auto 1fr 1fr 1fr 1fr 1fr" }}
         >
           <p className="w-[50px] invisible">#</p>
@@ -103,7 +103,7 @@ const StudentData = () => {
           <p className="invisible">Phone Number</p>
           <p className="invisible">Division</p>
           <div
-            className="grid border-t border-t-cyan-600 pt-1"
+            className="grid border-t border-t-[#00a384] pt-1"
             style={{ gridTemplateColumns: "1fr 1fr 1fr" }}
           >
             <p className="min-w-[100px]">Total</p>
@@ -142,7 +142,7 @@ const StudentData = () => {
                 setSendEmailTo([])
                 setEmailIsSent(true)
               }}
-              className={`bg-cyan-600 cursor-pointer text-white text-xl rounded-lg px-[30px] py-[12px] flex justify-center ${
+              className={`bg-[#00a384] cursor-pointer text-white text-xl rounded-lg px-[30px] py-[12px] flex justify-center ${
                 status === "sending_email" && loading && "px-[50px]"
               }`}
             >

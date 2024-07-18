@@ -24,10 +24,10 @@ const UploadStudentSheet = () => {
   return (
     <div className="flex-1">
       <div
-        className="rounded-md bg-blue-50 py-5 border-dashed border-cyan-600 border-[2px]"
+        className="rounded-md bg-blue-50 py-5 border-dashed border-[#00a384] border-[2px]"
         onClick={handleInput}
       >
-        <div className="text-[60px] flex justify-center items-center text-cyan-600 ">
+        <div className="text-[60px] flex justify-center items-center text-[#00a384] ">
           <IoMdCloudUpload />
         </div>
         <p className="text-center">
@@ -50,8 +50,8 @@ const UploadStudentSheet = () => {
           }}
           className={`${
             excelFile === null
-              ? "bg-cyan-200 text-black cursor-not-allowed"
-              : "bg-cyan-600 text-white cursor-pointer"
+              ? "bg-cyan-100 text-black cursor-not-allowed"
+              : "bg-[#00a384] text-white cursor-pointer"
           } rounded-lg px-[20px] py-[8px] flex justify-center ${
             status === "uploading_sheet" && loading && "px-[35px]"
           }`}
