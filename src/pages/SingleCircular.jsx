@@ -12,7 +12,6 @@ const SingleCircular = () => {
   useEffect(() => {
     const fileSetter = () => {
       if (!data) return
-      console.log(location?.pathname)
       const file = data?.find(
         (item) => item?.file?.cloudinary_id === location?.pathname?.slice(1)
       )
