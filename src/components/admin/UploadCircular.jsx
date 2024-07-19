@@ -75,6 +75,7 @@ const UploadCircular = () => {
           onClick={() => {
             dispatch(uploadCircular({ image: circular, name, _for }))
             setCircular(null)
+            setName("")
           }}
           className={`${
             circular === null

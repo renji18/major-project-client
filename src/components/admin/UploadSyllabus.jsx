@@ -75,6 +75,7 @@ const UploadSyllabus = () => {
             onClick={() => {
               dispatch(uploadSyllabus({ image: syllabus, name, _for }))
               setSyllabus(null)
+              setName("")
             }}
             className={`${
               syllabus === null

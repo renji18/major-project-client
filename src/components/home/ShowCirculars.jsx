@@ -37,7 +37,7 @@ const ShowCirculars = () => {
                 {e?.createdAt?.split("T")[0]}
               </p>
             </div>
-          ))
+          )).reverse()
         ) : (
           <p className="px-20 py-10 text-xl font-medium">
             No Circulars to Show
