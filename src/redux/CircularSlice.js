@@ -10,7 +10,6 @@ export const uploadCircular = createAsyncThunk(
       const fileData = new FormData()
       fileData.append("circular", data?.image)
       fileData.append("name", data?.name)
-      fileData.append("by", data?.by)
       fileData.append("_for", data?._for)
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/admin/circular/upload`,
@@ -67,9 +66,9 @@ const circularSlice = createSlice({
       state.status = "uploading_circular"
       state.loading = true
     })
-    builder.addCase(uploadCircular.fulfilled, (state) => {
+    builder.addCase(uploadCircular.fulfilled, (state, action) => {
       toast.success("Circular Uploaded Successfully")
-      state.status = "Success"
+      state.status = "success_uploading_circular"
       state.loading = false
     })
     builder.addCase(uploadCircular.rejected, (state, action) => {
@@ -86,7 +85,7 @@ const circularSlice = createSlice({
     })
     builder.addCase(getCirculars.fulfilled, (state, action) => {
       state.data = action.payload.data
-      state.status = "Success"
+      state.status = "success_getting_circulars"
       state.loading = false
     })
     builder.addCase(getCirculars.rejected, (state, action) => {
@@ -102,7 +101,7 @@ const circularSlice = createSlice({
       state.loading = true
     })
     builder.addCase(deleteCircular.fulfilled, (state) => {
-      state.status = "Success"
+      state.status = "success_deleting_circulars"
       state.loading = false
     })
     builder.addCase(deleteCircular.rejected, (state, action) => {

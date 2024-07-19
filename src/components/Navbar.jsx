@@ -1,7 +1,8 @@
-import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 const Navbar = () => {
   const navigate = useNavigate()
+  const location = useLocation()
   const [active, setActive] = useState("Home")
 
   const handleClick = (url, title) => {
@@ -11,15 +12,19 @@ const Navbar = () => {
 
   const data = [
     { title: "Home", path: "/" },
-    { title: "CSE Dept.", path: "/" },
+    { title: "CSE Dept.", path: "/department" },
     { title: "Syllabus", path: "/syllabus" },
-    { title: "Exam", path: "/" },
-    { title: "Events", path: "/" },
-    { title: "Help", path: "/" },
-    { title: "Contact Us", path: "/" },
+    { title: "Exam", path: "/exam" },
+    { title: "Events", path: "/events" },
+    { title: "Help", path: "/help" },
+    { title: "Contact Us", path: "/contact" },
     { title: "Upload", path: "/uploads" },
     { title: "Students", path: "/students" },
   ]
+
+  useEffect(() => {
+    setActive(data?.find((d) => d?.path === location.pathname)?.title)
+  }, [location])
 
   return (
     <div className="border border-black fixed sm:block z-[50000] top-0 left-0 right-0  bg-white">
@@ -29,7 +34,11 @@ const Navbar = () => {
         <div className="flex gap-6 items-center">
           {data?.map((e) => (
             <button
-              className={`${e?.title === active ? "underline" : "" }`}
+              className={`${e?.title === active ? "underline" : ""} ${
+                e?.title === "Home" && location?.pathname === "/"
+                  ? "hidden"
+                  : ""
+              }`}
               onClick={() => handleClick(e?.path, e?.title)}
             >
               {e?.title}

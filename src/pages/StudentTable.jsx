@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import StudentRow from "./StudentRow"
-import { sendEmailStudents } from "../../redux/StudentSlice"
+import StudentRow from "../components/admin/StudentRow"
+import { getStudentsData, sendEmailStudents } from "../redux/StudentSlice"
 import { MdOutlineArrowDropDown } from "react-icons/md"
-import Loader from "../utils/Loader"
+import Loader from "../components/utils/Loader"
 
-const StudentData = () => {
+const StudentTable = () => {
   const tableRef = useRef(null)
   const { data } = useSelector((state) => state?.students)
   const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const StudentData = () => {
   const { loading, status } = useSelector((state) => state?.students)
 
   const DropDown = () => (
-    <div className="absolute right-16 top-8 p-2 border border-cyan-600 rounded-md flex flex-col gap-[5px] text-xl bg-white shadow-2xl shadow-black">
+    <div className="absolute right-16 top-8 p-2 border border-my-green rounded-md flex flex-col gap-[5px] text-xl bg-white shadow-2xl shadow-black">
       <p
         onClick={() => {
           setFeeType("tuition")
@@ -66,12 +66,16 @@ const StudentData = () => {
     }
   }, [])
 
+  useEffect(() => {
+    dispatch(getStudentsData())
+  }, [])
+
   return (
     <div
       ref={tableRef}
-      className="m-5 tracking-wide relative border-[2px] overflow-scroll border-[#00a384] rounded-md "
+      className="mx-5 my-[100px] tracking-wide relative border-[2px] overflow-y-scroll border-my-green rounded-md "
     >
-      <div className="sticky bg-white top-0 p-2">
+      <div className="sticky bg-white top-0 px-2 pt-2">
         <div
           className="grid font-medium text-2xl text-center capitalize mb-2 relative"
           style={{ gridTemplateColumns: "auto 1fr 1fr 1fr 1fr 1fr" }}
@@ -94,7 +98,7 @@ const StudentData = () => {
         </div>
 
         <div
-          className="grid pb-2 font-medium text-xl text-center capitalize mb-4 border-b-[#00a384] border-b"
+          className="grid pb-2 font-medium text-xl text-center capitalize mb-4 border-b-my-green border-b"
           style={{ gridTemplateColumns: "auto 1fr 1fr 1fr 1fr 1fr" }}
         >
           <p className="w-[50px] invisible">#</p>
@@ -103,7 +107,7 @@ const StudentData = () => {
           <p className="invisible">Phone Number</p>
           <p className="invisible">Division</p>
           <div
-            className="grid border-t border-t-[#00a384] pt-1"
+            className="grid border-t border-t-my-green pt-1"
             style={{ gridTemplateColumns: "1fr 1fr 1fr" }}
           >
             <p className="min-w-[100px]">Total</p>
@@ -113,25 +117,27 @@ const StudentData = () => {
         </div>
       </div>
 
-      <div className="">
-        {data && data?.length > 0 ? (
-          data?.map((e, i) => (
-            <StudentRow
-              e={e}
-              i={i}
-              feeType={feeType}
-              key={e?._id}
-              setSendEmailTo={setSendEmailTo}
-              sendEmailTo={sendEmailTo}
-              emailIsSent={emailIsSent}
-              setEmailIsSent={setEmailIsSent}
-            />
-          ))
-        ) : (
-          <p className="text-center text-2xl font-medium pb-6 pt-3">
-            No Data to Show
-          </p>
-        )}
+      <div className="py-2">
+        <div className="mb-[4px]">
+          {data && data?.length > 0 ? (
+            data?.map((e, i) => (
+              <StudentRow
+                e={e}
+                i={i}
+                feeType={feeType}
+                key={e?._id}
+                setSendEmailTo={setSendEmailTo}
+                sendEmailTo={sendEmailTo}
+                emailIsSent={emailIsSent}
+                setEmailIsSent={setEmailIsSent}
+              />
+            ))
+          ) : (
+            <p className="text-center text-2xl font-medium pb-6 pt-3">
+              No Data to Show
+            </p>
+          )}
+        </div>
         {sendEmailTo?.length > 0 && (
           <div className="flex sticky bottom-0 justify-end mr-3">
             <button
@@ -142,7 +148,7 @@ const StudentData = () => {
                 setSendEmailTo([])
                 setEmailIsSent(true)
               }}
-              className={`bg-[#00a384] cursor-pointer text-white text-xl rounded-lg px-[30px] py-[12px] flex justify-center ${
+              className={`bg-my-green cursor-pointer text-white text-xl rounded-lg px-[30px] py-[12px] flex justify-center ${
                 status === "sending_email" && loading && "px-[50px]"
               }`}
             >
@@ -159,4 +165,4 @@ const StudentData = () => {
   )
 }
 
-export default StudentData
+export default StudentTable

@@ -7,7 +7,6 @@ const Loader = () => {
       <img
         src={LOADER}
         alt="loader"
-        // className="w-[100px] h-[100px]"
       />
     </div>
   )

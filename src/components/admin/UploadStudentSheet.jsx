@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { uploadExcelSheet } from "../../redux/StudentSlice"
+import { getStudentsData, uploadExcelSheet } from "../../redux/StudentSlice"
 import { IoMdCloudUpload } from "react-icons/io"
 import Loader from "../utils/Loader"
 
@@ -24,14 +24,14 @@ const UploadStudentSheet = () => {
   return (
     <div className="flex-1">
       <div
-        className="rounded-md bg-blue-50 py-5 border-dashed border-[#00a384] border-[2px]"
+        className="rounded-md bg-blue-50 py-5 border-dashed border-my-green border-[2px]"
         onClick={handleInput}
       >
-        <div className="text-[60px] flex justify-center items-center text-[#00a384] ">
+        <div className="text-[60px] flex justify-center items-center text-my-green">
           <IoMdCloudUpload />
         </div>
         <p className="text-center">
-          {excelFile ? excelFile.name : "Upload a sheet"}
+          {excelFile ? excelFile.name : "Upload students sheet"}
         </p>
         <input
           type="file"
@@ -50,8 +50,8 @@ const UploadStudentSheet = () => {
           }}
           className={`${
             excelFile === null
-              ? "bg-cyan-100 text-black cursor-not-allowed"
-              : "bg-[#00a384] text-white cursor-pointer"
+              ? "bg-my-green/20 text-black cursor-not-allowed"
+              : "bg-my-green text-white cursor-pointer"
           } rounded-lg px-[20px] py-[8px] flex justify-center ${
             status === "uploading_sheet" && loading && "px-[35px]"
           }`}

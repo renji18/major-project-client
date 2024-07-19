@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { uploadCircular } from "../../redux/CircularSlice"
+import { getCirculars, uploadCircular } from "../../redux/CircularSlice"
 import { IoMdCloudUpload } from "react-icons/io"
 import Loader from "../utils/Loader"
 
@@ -27,10 +27,10 @@ const UploadCircular = () => {
     <div className="flex-1">
       <div>
         <div
-          className="rounded-md bg-blue-50 py-5 border-dashed border-[#00a384] border-[2px]"
+          className="rounded-md bg-blue-50 py-5 border-dashed border-my-green border-[2px]"
           onClick={handleInput}
         >
-          <div className="text-[60px] flex justify-center items-center text-[#00a384] ">
+          <div className="text-[60px] flex justify-center items-center text-my-green ">
             <IoMdCloudUpload />
           </div>
           <p className="text-center">
@@ -49,7 +49,7 @@ const UploadCircular = () => {
           <select
             onClick={(e) => setFor(e.target.value)}
             defaultValue={_for}
-            className="bg-transparent rounded-lg border-[2px] my-2 cursor-pointer outline-none py-2 pl-2 border-[#00a384]"
+            className="bg-transparent rounded-lg border-[2px] my-2 cursor-pointer outline-none py-2 pl-2 border-my-green"
           >
             <option value="all">All Semesters</option>
             <option value="1">1st Semester</option>
@@ -66,7 +66,7 @@ const UploadCircular = () => {
             placeholder="File Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full rounded-lg border-[2px] outline-none my-2 py-1.5 px-3 border-[#00a384]"
+            className="w-full rounded-lg border-[2px] outline-none my-2 py-1.5 px-3 border-my-green"
           />
         </div>
       </div>
@@ -78,8 +78,8 @@ const UploadCircular = () => {
           }}
           className={`${
             circular === null
-              ? "bg-cyan-100 text-black cursor-not-allowed"
-              : "bg-[#00a384] text-white cursor-pointer"
+              ? "bg-my-green/20 text-black cursor-not-allowed"
+              : "bg-my-green text-white cursor-pointer"
           } rounded-lg px-[20px] py-[8px] flex justify-center ${
             status === "uploading_circular" && loading && "px-[35px]"
           }`}

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
+import { toast } from "react-toastify"
 
 export const uploadSyllabus = createAsyncThunk(
   "uploadSyllabus",
@@ -16,7 +17,6 @@ export const uploadSyllabus = createAsyncThunk(
       return response?.data
     } catch (error) {
       return rejectWithValue(error.response)
-
     }
   }
 )
@@ -51,7 +51,6 @@ export const deleteSyllabus = createAsyncThunk(
   }
 )
 
-
 const syllabusSlice = createSlice({
   name: "Syllabus",
   initialState: {
@@ -67,12 +66,12 @@ const syllabusSlice = createSlice({
       state.loading = true
     })
     builder.addCase(uploadSyllabus.fulfilled, (state) => {
-      // toast.success("Syllabus Uploaded Successfully")
-      state.status = "Success"
+      toast.success("Syllabus Uploaded Successfully")
+      state.status = "success_uploading_syllabus"
       state.loading = false
     })
     builder.addCase(uploadSyllabus.rejected, (state, action) => {
-      // toast.error("Error Uplading Syllabus")
+      toast.error("Error Uplading Syllabus")
       state.error = action.payload
       state.loading = false
       state.status = "Failed"
@@ -85,11 +84,11 @@ const syllabusSlice = createSlice({
     })
     builder.addCase(getSyllabus.fulfilled, (state, action) => {
       state.data = action.payload.data
-      state.status = "Success"
+      state.status = "success_getting_syllabus"
       state.loading = false
     })
     builder.addCase(getSyllabus.rejected, (state, action) => {
-      // toast.error("Error Fetching Circulars")
+      toast.error("Error Fetching Syllabus")
       state.error = action.payload
       state.loading = false
       state.status = "Failed"
@@ -97,11 +96,11 @@ const syllabusSlice = createSlice({
 
     // Delete Syllabus Builders
     builder.addCase(deleteSyllabus.pending, (state) => {
-      state.status = "deleting_circular"
+      state.status = "deleting_syllabus"
       state.loading = true
     })
     builder.addCase(deleteSyllabus.fulfilled, (state) => {
-      state.status = "Success"
+      state.status = "success_deleting_syllabus"
       state.loading = false
     })
     builder.addCase(deleteSyllabus.rejected, (state, action) => {
@@ -111,6 +110,5 @@ const syllabusSlice = createSlice({
     })
   },
 })
-
 
 export default syllabusSlice.reducer

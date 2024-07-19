@@ -3,7 +3,7 @@ import ShowCirculars from "../components/home/ShowCirculars"
 
 const Home = () => {
   return (
-    <div className="flex justify-between items-center relative h-screen bg-black/20">
+    <div className="flex justify-between items-center relative h-screen bg-black/25">
       <img
         src="https://api.ignitehost.in/api/v-1/view/a6319350-b6cf-11ee-b929-f5a9fff8a41a/file_20240119193411_b851b86b-b701-11ee-b929-f5a9fff8a41a.jpg/"
         className="w-full h-full object-cover -z-10"

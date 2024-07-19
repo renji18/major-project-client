@@ -68,7 +68,7 @@ const studentSlice = createSlice({
     })
     builder.addCase(uploadExcelSheet.fulfilled, (state) => {
       toast.success("Sheet Uploaded Successfully")
-      state.status = "Success"
+      state.status = "success_uploading_sheet"
       state.loading = false
     })
     builder.addCase(uploadExcelSheet.rejected, (state, action) => {
@@ -85,7 +85,7 @@ const studentSlice = createSlice({
     })
     builder.addCase(getStudentsData.fulfilled, (state, action) => {
       state.data = action.payload.students
-      state.status = "Success"
+      state.status = "success_fetching_students"
       state.loading = false
     })
     builder.addCase(getStudentsData.rejected, (state, action) => {
@@ -102,7 +102,7 @@ const studentSlice = createSlice({
     })
     builder.addCase(sendEmailStudents.fulfilled, (state) => {
       toast.success("Email/s Send Successfully")
-      state.status = "Success"
+      state.status = "success_sending_email"
       state.loading = false
     })
     builder.addCase(sendEmailStudents.rejected, (state, action) => {

@@ -5,7 +5,7 @@ import UploadSyllabus from "../components/admin/UploadSyllabus"
 
 const AllUploads = () => {
   return (
-    <div className=" py-[100px]">
+    <div className=" my-[100px]">
       <div className="flex justify-evenly gap-40 mx-40 mb-20">
         <UploadCircular />
         <UploadStudentSheet />

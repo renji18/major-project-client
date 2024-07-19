@@ -15,11 +15,11 @@ const SingleCircular = () => {
   }, [location])
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center py-[70px]">
+    <div className="h-screen w-screen flex items-center justify-center">
       {file ? (
         <iframe
           src={file}
-          className="h-full object-center w-full max-w-[100vw]"
+          className="h-full object-center w-full max-w-[100vw] py-[70px]"
           frameborder="0"
           title={file}
         ></iframe>
