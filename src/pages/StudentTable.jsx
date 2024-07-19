@@ -17,7 +17,7 @@ const StudentTable = () => {
   const { loading, status } = useSelector((state) => state?.students)
 
   const DropDown = () => (
-    <div className="absolute right-16 top-8 p-2 border border-my-green rounded-md flex flex-col gap-[5px] text-xl bg-white shadow-2xl shadow-black">
+    <div className="hidden absolute right-16 top-8 p-2 border border-my-green rounded-md lg:flex flex-col gap-[5px] text-xl bg-white shadow-2xl shadow-black">
       <p
         onClick={() => {
           setFeeType("tuition")

@@ -9,9 +9,10 @@ import Home from "./pages/Home"
 import SingleCircular from "./pages/SingleCircular"
 import StudentTable from "./pages/StudentTable"
 import AllUploads from "./pages/AllUploads"
-import Footer from "./components/Footer"
-import Navbar from "./components/Navbar"
+import Footer from "./components/utils/Footer"
+import Navbar from "./components/utils/Navbar"
 import "react-toastify/dist/ReactToastify.css"
+import MobileNav from "./components/utils/MobileNav"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -39,11 +40,12 @@ const App = () => {
       />
       <BrowserRouter>
         <Navbar />
+        <MobileNav />
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/circulars/:id" element={<SingleCircular />} />
           <Route path="/students" element={<StudentTable />} />
-          <Route path="/circular/:id" element={<SingleCircular />} />
           <Route path="/uploads" element={<AllUploads />} />
         </Routes>
         <Footer />

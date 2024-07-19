@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import Loader from "../components/utils/Loader"
+import { useSelector } from "react-redux"
 
 const SingleCircular = () => {
   const location = useLocation()
   const [file, setFile] = useState(null)
 
+  const { data } = useSelector((state) => state?.circulars)
+
   useEffect(() => {
     const fileSetter = () => {
-      if (!location?.state) return
-      setFile(location?.state?.file)
+      if (!data) return
+      console.log(location?.pathname)
+      const file = data?.find(
+        (item) => item?.file?.cloudinary_id === location?.pathname?.slice(1)
+      )
+      setFile(file?.file?.avatar)
     }
     fileSetter()
-  }, [location])
+  }, [data, location])
 
   return (
     <div className="h-screen w-screen flex items-center justify-center">
