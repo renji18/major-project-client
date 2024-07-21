@@ -13,6 +13,7 @@ import Footer from "./components/utils/Footer"
 import Navbar from "./components/utils/Navbar"
 import "react-toastify/dist/ReactToastify.css"
 import MobileNav from "./components/utils/MobileNav"
+import Syllabus from "./pages/Syllabus"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/circulars/:id" element={<SingleCircular />} />
           <Route path="/students" element={<StudentTable />} />
           <Route path="/uploads" element={<AllUploads />} />
+          <Route path="/syllabus" element={<Syllabus />} />
         </Routes>
         <Footer />
       </BrowserRouter>

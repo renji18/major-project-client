@@ -1,5 +1,5 @@
 import React from "react"
-import ShowCirculars from "../components/home/ShowCirculars"
+import Circulars from "../components/home/Circulars"
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
         alt=""
       />
       <div className="absolute lg:right-10 bg-white/70 rounded-lg p-3 lg:p-5">
-        <ShowCirculars />
+        <Circulars />
       </div>
     </div>
   )

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { getCirculars } from "../../redux/CircularSlice"
 
-const ShowCirculars = () => {
+const Circulars = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { data } = useSelector((state) => state?.circulars)
@@ -49,4 +49,4 @@ const ShowCirculars = () => {
   )
 }
 
-export default ShowCirculars
+export default Circulars
