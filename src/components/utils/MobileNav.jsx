@@ -33,14 +33,14 @@ const MobileNav = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 lg:hidden text-gray-900 bg-white z-[50000]">
-      <div className="flex p-3 border-b border-b-black justify-between items-center">
+      <div className="flex p-3 justify-between items-center">
         <p className="font-semibold text-lg">Dept. of CSE, PIT</p>
         <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <IoClose size={25} /> : <FiMenu size={25} />}
         </div>
       </div>
       <div
-        className={`flex flex-col gap-2 ${
+        className={`flex flex-col gap-3 text-[18px] ${
           isMenuOpen ? "p-3 border border-black" : "h-0 overflow-hidden"
         } transition-all duration-200 ease-linear`}
       >
@@ -49,7 +49,7 @@ const MobileNav = () => {
             key={e?.title}
             className={`${e?.title === active ? "underline" : ""} ${
               e?.title === "Home" && location?.pathname === "/" ? "hidden" : ""
-            } border-b border-b-black last:border-none`}
+            }`}
             onClick={() => handleClick(e?.path, e?.title)}
           >
             {e?.title}
