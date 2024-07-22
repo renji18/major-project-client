@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getCirculars, uploadCircular } from "../../redux/CircularSlice"
+import { uploadCircular } from "../../redux/CircularSlice"
 import { IoMdCloudUpload } from "react-icons/io"
 import Loader from "../utils/Loader"
 

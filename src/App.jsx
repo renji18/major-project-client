@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { ToastContainer } from "react-toastify"
 import { getStudentsData } from "./redux/StudentSlice"
 import { getCirculars } from "./redux/CircularSlice"
@@ -18,17 +18,18 @@ import SingleSyllabus from "./pages/SingleSyllabus"
 
 const App = () => {
   const dispatch = useDispatch()
+  const { students, circulars, syllabus } = useSelector((state) => state)
+  console.log(students, circulars, syllabus, "state ")
 
   useEffect(() => {
-    dispatch(getStudentsData())
-  }, [])
+    const dispatcher = () => {
+      console.log("called")
+      dispatch(getCirculars())
+      dispatch(getSyllabus())
+      dispatch(getStudentsData())
+    }
 
-  useEffect(() => {
-    dispatch(getCirculars())
-  }, [])
-
-  useEffect(() => {
-    dispatch(getSyllabus())
+    dispatcher()
   }, [])
 
   return (

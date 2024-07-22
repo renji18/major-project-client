@@ -6,9 +6,9 @@ import { MdOutlineArrowDropDown } from "react-icons/md"
 import Loader from "../components/utils/Loader"
 
 const StudentTable = () => {
+  const dispatch = useDispatch()
   const tableRef = useRef(null)
   const { data } = useSelector((state) => state?.students)
-  const dispatch = useDispatch()
   const [feeType, setFeeType] = useState("tuition")
   const [sendEmailTo, setSendEmailTo] = useState([])
   const [showDropDown, setShowDropDown] = useState(false)
@@ -64,10 +64,6 @@ const StudentTable = () => {
     return () => {
       window.removeEventListener("resize", updateMaxHeightNotif)
     }
-  }, [])
-
-  useEffect(() => {
-    dispatch(getStudentsData())
   }, [])
 
   return (

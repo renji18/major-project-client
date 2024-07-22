@@ -1,16 +1,10 @@
-import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React from "react"
+import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { getCirculars } from "../../redux/CircularSlice"
 
 const Circulars = () => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { data } = useSelector((state) => state?.circulars)
-
-  useEffect(() => {
-    dispatch(getCirculars())
-  }, [])
 
   return (
     <div className="flex flex-col justify-center items-center gap-3 tracking-wide">
@@ -27,9 +21,7 @@ const Circulars = () => {
               >
                 <p
                   className="hover:underline text-lg lg:text-2xl cursor-pointer"
-                  onClick={() =>
-                    navigate(`/${e?.file?.cloudinary_id}`)
-                  }
+                  onClick={() => navigate(`/${e?.file?.cloudinary_id}`)}
                 >
                   {e?.name}
                 </p>

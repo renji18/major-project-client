@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getStudentsData, uploadExcelSheet } from "../../redux/StudentSlice"
+import { uploadExcelSheet } from "../../redux/StudentSlice"
 import { IoMdCloudUpload } from "react-icons/io"
 import Loader from "../utils/Loader"
 

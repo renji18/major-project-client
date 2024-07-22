@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useState } from "react"
+import { useSelector } from "react-redux"
 import SyllabusRow from "../components/syllabus/SyllabusRow"
-import { getSyllabus } from "../redux/SyllabusSlice"
 
 const Syllabus = () => {
-  const dispatch = useDispatch()
   const [_for, setFor] = useState("")
   const [syllabus, setSyllabus] = useState(null)
   const { data } = useSelector((state) => state?.syllabus)
@@ -15,10 +13,6 @@ const Syllabus = () => {
     const filterArr = data?.filter((d) => Number(e.target.value) === d?.for)
     setSyllabus(filterArr)
   }
-
-  useEffect(() => {
-    dispatch(getSyllabus())
-  }, [])
 
   return (
     <div className="my-[100px]">

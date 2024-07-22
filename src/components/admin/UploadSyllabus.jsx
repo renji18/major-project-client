@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 import { IoMdCloudUpload } from "react-icons/io"
 import { useDispatch, useSelector } from "react-redux"
-import { getSyllabus, uploadSyllabus } from "../../redux/SyllabusSlice"
+import { uploadSyllabus } from "../../redux/SyllabusSlice"
 import Loader from "../utils/Loader"
 
 const UploadSyllabus = () => {
