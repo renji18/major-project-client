@@ -14,6 +14,7 @@ import Navbar from "./components/utils/Navbar"
 import "react-toastify/dist/ReactToastify.css"
 import MobileNav from "./components/utils/MobileNav"
 import Syllabus from "./pages/Syllabus"
+import SingleSyllabus from "./pages/SingleSyllabus"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/students" element={<StudentTable />} />
           <Route path="/uploads" element={<AllUploads />} />
           <Route path="/syllabus" element={<Syllabus />} />
+          <Route path="/syllabus/:id" element={<SingleSyllabus />} />
         </Routes>
         <Footer />
       </BrowserRouter>
