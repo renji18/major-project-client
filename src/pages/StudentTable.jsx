@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import StudentRow from "../components/admin/StudentRow"
-import { getStudentsData, sendEmailStudents } from "../redux/StudentSlice"
+import { sendEmailStudents } from "../redux/StudentSlice"
 import { MdOutlineArrowDropDown } from "react-icons/md"
 import Loader from "../components/utils/Loader"
 

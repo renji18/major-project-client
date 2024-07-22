@@ -18,12 +18,9 @@ import SingleSyllabus from "./pages/SingleSyllabus"
 
 const App = () => {
   const dispatch = useDispatch()
-  const { students, circulars, syllabus } = useSelector((state) => state)
-  console.log(students, circulars, syllabus, "state ")
 
   useEffect(() => {
     const dispatcher = () => {
-      console.log("called")
       dispatch(getCirculars())
       dispatch(getSyllabus())
       dispatch(getStudentsData())

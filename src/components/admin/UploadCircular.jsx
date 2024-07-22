@@ -23,6 +23,12 @@ const UploadCircular = () => {
     inputRef.current.click()
   }
 
+  const upload = () => {
+    dispatch(uploadCircular({ image: circular, name, _for }))
+    setCircular(null)
+    setName("")
+  }
+
   return (
     <div className="flex-1">
       <div>
@@ -72,11 +78,7 @@ const UploadCircular = () => {
       </div>
       <div className="flex justify-end">
         <button
-          onClick={() => {
-            dispatch(uploadCircular({ image: circular, name, _for }))
-            setCircular(null)
-            setName("")
-          }}
+          onClick={upload}
           className={`${
             circular === null
               ? "bg-my-green/20 text-black cursor-not-allowed"

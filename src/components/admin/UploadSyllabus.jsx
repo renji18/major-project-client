@@ -23,6 +23,12 @@ const UploadSyllabus = () => {
     setSyllabus(files[0])
   }
 
+  const upload = () => {
+    dispatch(uploadSyllabus({ image: syllabus, name, _for }))
+    setSyllabus(null)
+    setName("")
+  }
+
   return (
     <div className="px-60">
       <div className="flex-1">
@@ -72,11 +78,7 @@ const UploadSyllabus = () => {
         </div>
         <div className="flex justify-end">
           <button
-            onClick={() => {
-              dispatch(uploadSyllabus({ image: syllabus, name, _for }))
-              setSyllabus(null)
-              setName("")
-            }}
+            onClick={() => upload}
             className={`${
               syllabus === null
                 ? "bg-my-green/20 text-black cursor-not-allowed"

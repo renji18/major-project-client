@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { uploadExcelSheet } from "../../redux/StudentSlice"
+import { getStudentsData, uploadExcelSheet } from "../../redux/StudentSlice"
 import { IoMdCloudUpload } from "react-icons/io"
 import Loader from "../utils/Loader"
 
@@ -20,6 +20,19 @@ const UploadStudentSheet = () => {
     if (!inputRef) return
     inputRef.current.click()
   }
+
+  const upload = () => {
+    dispatch(uploadExcelSheet(excelFile))
+    setExcelFile(null)
+  }
+
+  useEffect(() => {
+    const refetchStudents = () => {
+      if (status !== "success_uploading_sheet") return
+      dispatch(getStudentsData())
+    }
+    refetchStudents()
+  }, [status])
 
   return (
     <div className="flex-1">
@@ -44,10 +57,7 @@ const UploadStudentSheet = () => {
       </div>
       <div className="flex justify-end my-2">
         <button
-          onClick={() => {
-            dispatch(uploadExcelSheet(excelFile))
-            setExcelFile(null)
-          }}
+          onClick={upload}
           className={`${
             excelFile === null
               ? "bg-my-green/20 text-black cursor-not-allowed"
