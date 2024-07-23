@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch} from "react-redux"
 import { ToastContainer } from "react-toastify"
 import { getStudentsData } from "./redux/StudentSlice"
 import { getCirculars } from "./redux/CircularSlice"
@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css"
 import MobileNav from "./components/utils/MobileNav"
 import Syllabus from "./pages/Syllabus"
 import SingleSyllabus from "./pages/SingleSyllabus"
+import Exam from "./pages/Exam"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -49,6 +50,8 @@ const App = () => {
           <Route path="/uploads" element={<AllUploads />} />
           <Route path="/syllabus" element={<Syllabus />} />
           <Route path="/syllabus/:id" element={<SingleSyllabus />} />
+          <Route path="/exam" element={<Exam />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>
