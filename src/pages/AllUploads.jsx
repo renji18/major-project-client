@@ -106,10 +106,9 @@ const AllUploads = () => {
             <p className="text-center">
               {file
                 ? file.name
-                : uploadType === "syllabus"
-                ? "Syllabus"
-                : "Circular"}
+                :"Upload a File"}
             </p>
+
             <input
               type="file"
               accept=".pdf"
