@@ -6,13 +6,10 @@ const Exam = () => {
 
   const selectDept = (e) => {
     setDept(e.target.value)
-    setSem("")
-    console.log(e.target.value)
   }
 
   const selectSem = (e) => {
     setSem(e.target.value)
-    console.log(e.target.value)
   }
 
   return (
@@ -24,7 +21,7 @@ const Exam = () => {
             defaultValue={dept}
             className="bg-transparent cursor-pointer w-full px-3 py-2 border-[1px]  "
           >
-            <option value="select">------Select Department------</option>
+            <option value="">------Select Department------</option>
             <option value="Core">Core CSE</option>
             <option value="AI">CSE AI</option>
             <option value="IoT">CSE IoT</option>
@@ -40,7 +37,7 @@ const Exam = () => {
             } bg-transparent w-full px-3 py-2 border-[1px]  `}
             disabled={!dept}
           >
-            <option value="select">------Select Semester------</option>
+            <option value="">------Select Semester------</option>
             <option value="1">1st Semester</option>
             <option value="2">2nd Semester</option>
             <option value="3">3rd Semester</option>

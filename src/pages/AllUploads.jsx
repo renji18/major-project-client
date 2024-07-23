@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { IoMdCloudUpload } from "react-icons/io"
 
 const AllUploads = () => {
@@ -6,9 +6,22 @@ const AllUploads = () => {
   const [file, setFile] = useState(null)
   const [name, setName] = useState("")
   // const [_for, setFor] = useState("all")
-  const [uploadType, setUploadType] = useState("type")
-  const [department, setDepartment] = useState("department")
-  const [semester, setSemester] = useState("semester")
+  const [uploadType, setUploadType] = useState("")
+  const [department, setDepartment] = useState("")
+  const [semester, setSemester] = useState("")
+
+  useEffect(() => {
+    if (uploadType === "circular") {
+      setDepartment("")
+    }
+    console.log({
+      file: file?.name || "No file",
+      name,
+      uploadType,
+      department: department || "N/A",
+      semester: semester || "N/A",
+    })
+  }, [file, name, uploadType, department, semester])
 
   const handleInput = () => {
     if (!inputRef) return
@@ -22,9 +35,9 @@ const AllUploads = () => {
 
   const upload = () => {
     setFile(null)
-    setUploadType("")
-    setDepartment("")
-    setSemester("")
+    // setUploadType("")
+    // setDepartment("")
+    // setSemester("")
     setName("")
   }
 
@@ -34,11 +47,14 @@ const AllUploads = () => {
         <div>
           <div>
             <select
-              onChange={(e) => setUploadType(e.target.value)}
+              onChange={(e) => {
+                setUploadType(e.target.value)
+                console.log(`Upload type selected: ${e.target.value}`)
+              }}
               value={uploadType}
               className="bg-transparent rounded-lg border-[2px] my-2 cursor-pointer outline-none py-2 pl-2 border-my-green"
             >
-              <option value="type">---Select Type---</option>
+              <option value="">---Select Type---</option>
               <option value="syllabus">Syllabus</option>
               <option value="circular">Circular</option>
             </select>
@@ -47,22 +63,27 @@ const AllUploads = () => {
             {uploadType === "syllabus" && (
               <div>
                 <select
-                  onChange={(e) => setDepartment(e.target.value)}
+                  onChange={(e) => {
+                    setDepartment(e.target.value)
+                    console.log(`Department selected: ${e.target.value}`)
+                  }}
                   value={department}
                   className="bg-transparent rounded-lg border-[2px] my-2 cursor-pointer outline-none py-2 pl-2 border-my-green"
                 >
-                  <option value="department">---Select Department---</option>
+                  <option value="">---Select Department---</option>
                   <option value="CSE">CSE</option>
                   <option value="AI">AI</option>
                 </select>
                 {department && (
                   <select
-                    onChange={(e) => setSemester(e.target.value)}
+                    onChange={(e) => {
+                      setSemester(e.target.value)
+                      console.log(`Semester selected: ${e.target.value}`)
+                    }}
                     value={semester}
                     className="bg-transparent rounded-lg border-[2px] my-2 cursor-pointer outline-none py-2 pl-2 border-my-green"
-                    disabled={!department}
                   >
-                    <option value="semester">---Select Semester---</option>
+                    <option value="">---Select Semester---</option>
                     <option value="1">1st Semester</option>
                     <option value="2">2nd Semester</option>
                     <option value="3">3rd Semester</option>
@@ -78,7 +99,12 @@ const AllUploads = () => {
             <div>
               {uploadType === "circular" && (
                 <select
-                  onChange={(e) => setSemester(e.target.value)}
+                  onChange={(e) => {
+                    setSemester(e.target.value)
+                    console.log(
+                      `Semester selected for circular: ${e.target.value}`
+                    )
+                  }}
                   value={semester}
                   className="bg-transparent rounded-lg border-[2px] my-2 cursor-pointer outline-none py-2 pl-2 border-my-green"
                 >
@@ -103,11 +129,7 @@ const AllUploads = () => {
             <div className="text-[60px] flex justify-center items-center text-my-green ">
               <IoMdCloudUpload />
             </div>
-            <p className="text-center">
-              {file
-                ? file.name
-                :"Upload a File"}
-            </p>
+            <p className="text-center">{file ? file.name : "Upload a File"}</p>
 
             <input
               type="file"
@@ -126,7 +148,10 @@ const AllUploads = () => {
             type="text"
             placeholder="File Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value)
+              console.log(`File name: ${e.target.value}`)
+            }}
             className="w-full rounded-lg border-[2px] outline-none my-2 py-1.5 px-3 border-my-green"
           />
         </div>

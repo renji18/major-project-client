@@ -10,8 +10,6 @@ const Syllabus = () => {
 
   const selectDept = (e) => {
     setDept(e.target.value)
-    setFor("")
-    console.log(e.target.value)
   }
 
   const selectSem = (e) => {
@@ -31,7 +29,7 @@ const Syllabus = () => {
             defaultValue={dept}
             className="bg-transparent cursor-pointer w-full px-3 py-2 border-[1px]  "
           >
-            <option value="select">------Select Department------</option>
+            <option value="">------Select Department------</option>
             <option value="Core">Core CSE</option>
             <option value="AI">CSE AI</option>
             <option value="IoT">CSE IoT</option>
@@ -47,7 +45,7 @@ const Syllabus = () => {
             } bg-transparent w-full px-3 py-2 border-[1px]  `}
             disabled={!dept}
           >
-            <option value="select">------Select Semester------</option>
+            <option value="">------Select Semester------</option>
             <option value="1">1st Semester</option>
             <option value="2">2nd Semester</option>
             <option value="3">3rd Semester</option>
