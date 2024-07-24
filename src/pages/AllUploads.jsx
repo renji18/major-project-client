@@ -43,7 +43,6 @@ const AllUploads = () => {
     console.log(`Upload type selected: ${e.target.value}`)
   }
 
-
   const upload = () => {
     setFile(null)
     // setUploadType("")
@@ -167,11 +166,21 @@ const AllUploads = () => {
           <button
             onClick={upload}
             className={`${
-              !file || !uploadType || !name || !semester
+              !file ||
+              !name ||
+              !uploadType ||
+              (uploadType === "syllabus" && !department) ||
+              !semester
                 ? "bg-my-green/20 text-black cursor-not-allowed"
                 : "bg-my-green text-white cursor-pointer"
             } rounded-lg px-[20px] py-[8px] flex justify-center `}
-            disabled={!file || !uploadType || !name || !semester}
+            disabled={
+              !file ||
+              !name ||
+              !uploadType ||
+              (uploadType === "syllabus" && !department) ||
+              !semester
+            }
           >
             Upload
           </button>
