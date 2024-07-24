@@ -15,7 +15,7 @@ const AllUploads = () => {
       setDepartment("")
     }
     console.log({
-      file: file?.name || "No file",
+      file: file?.name || "",
       name,
       uploadType,
       department: department || "N/A",
@@ -33,6 +33,17 @@ const AllUploads = () => {
     setFile(files[0])
   }
 
+  const handleUploadTypeChange = (e) => {
+    setUploadType(e.target.value)
+    setFile(null)
+    setName("")
+    if (e.target.value === "circular") {
+      setDepartment("")
+    }
+    console.log(`Upload type selected: ${e.target.value}`)
+  }
+
+
   const upload = () => {
     setFile(null)
     // setUploadType("")
@@ -47,10 +58,7 @@ const AllUploads = () => {
         <div>
           <div>
             <select
-              onChange={(e) => {
-                setUploadType(e.target.value)
-                console.log(`Upload type selected: ${e.target.value}`)
-              }}
+              onChange={handleUploadTypeChange}
               value={uploadType}
               className="bg-transparent rounded-lg border-[2px] my-2 cursor-pointer outline-none py-2 pl-2 border-my-green"
             >
@@ -159,10 +167,11 @@ const AllUploads = () => {
           <button
             onClick={upload}
             className={`${
-              file === null
+              !file || !uploadType || !name || !semester
                 ? "bg-my-green/20 text-black cursor-not-allowed"
                 : "bg-my-green text-white cursor-pointer"
             } rounded-lg px-[20px] py-[8px] flex justify-center `}
+            disabled={!file || !uploadType || !name || !semester}
           >
             Upload
           </button>
