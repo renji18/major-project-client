@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import ShowExam from "../components/exam/ShowExam"
 
 const Exam = () => {
   const [sem, setSem] = useState("")
@@ -49,6 +50,7 @@ const Exam = () => {
           </select>
         </div>
       </div>
+      <ShowExam dept={dept} sem={sem} />
     </div>
   )
 }
