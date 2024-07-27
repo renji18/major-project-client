@@ -6,6 +6,11 @@ const ShowExam = ({ dept, sem }) => {
   const [filteredData, setFilteredData] = useState([])
 
   useEffect(() => {
+    if (dept === "" && sem === "") {
+      setFilteredData([])
+      return
+    }
+
     const filterData = data.filter(
       (i) =>
         (dept === "" || i?.department === dept) &&
@@ -58,9 +63,10 @@ const ShowExam = ({ dept, sem }) => {
   ]
 
   return (
-    <div className="grid items-center justify-center gap-16 p-10 mx-16 my-10 " style={
-      {gridTemplateColumns:"1fr 1fr"}
-    }>
+    <div
+      className="grid items-center justify-center gap-16 p-10 mx-16 my-10 "
+      style={{ gridTemplateColumns: "1fr 1fr" }}
+    >
       {filteredData?.length > 0 ? (
         filteredData?.map((e) => (
           <div
@@ -75,7 +81,7 @@ const ShowExam = ({ dept, sem }) => {
               src={img}
               alt={e?.exam_type}
               className="w-full h-full object-cover"
-            /> 
+            />
             <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 text-white text-center py-2">
               {e?.exam_type}
             </div>

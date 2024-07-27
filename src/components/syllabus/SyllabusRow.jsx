@@ -8,6 +8,11 @@ const SyllabusRow = ({ dept, sem }) => {
   const [filteredData, setFilteredData] = useState([])
 
   useEffect(() => {
+    if (dept === "" && sem === "") {
+      setFilteredData([])
+      return
+    }
+
     const filterData = data.filter(
       (i) =>
         (dept===""|| i?.department === dept) &&
