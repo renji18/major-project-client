@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react"
 import { IoMdCloudUpload } from "react-icons/io"
+import UploadStudentSheet from "../components/admin/UploadStudentSheet"
 
 const AllUploads = () => {
   const inputRef = useRef(null)
   const [file, setFile] = useState(null)
   const [name, setName] = useState("")
-  // const [_for, setFor] = useState("all")
   const [uploadType, setUploadType] = useState("")
   const [department, setDepartment] = useState("")
   const [semester, setSemester] = useState("")
@@ -185,6 +185,10 @@ const AllUploads = () => {
             Upload
           </button>
         </div>
+      </div>
+
+      <div className="mt-20">
+        <UploadStudentSheet />
       </div>
     </div>
   )
