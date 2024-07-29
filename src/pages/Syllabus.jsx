@@ -1,23 +1,64 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import SyllabusRow from "../components/syllabus/SyllabusRow"
 
+const data = [
+  {
+    file: {
+      avatar:
+        "https://res.cloudinary.com/dkdxeiuxr/image/upload/v1721973206/syllabus/tvcgstzn15fm4qu9iwce.png",
+      cloudinary_id: "syllabus/tvcgstzn15fm4qu9iwce",
+    },
+    _id: "66a339d65998c4467429a3ed",
+    semester: 1,
+    department: "core",
+    subject: "COMA",
+    createdAt: "2024-07-26T05:53:26.824Z",
+    updatedAt: "2024-07-26T05:53:26.824Z",
+    __v: 0,
+  },
+  {
+    file: {
+      avatar:
+        "https://res.cloudinary.com/dkdxeiuxr/image/upload/v1721973233/syllabus/sfr7eem8fyh3oa7ksxla.png",
+      cloudinary_id: "syllabus/sfr7eem8fyh3oa7ksxla",
+    },
+    _id: "66a339f25998c4467429a3f0",
+    semester: 6,
+    department: "ai",
+    subject: "NLP",
+    createdAt: "2024-07-26T05:53:54.059Z",
+    updatedAt: "2024-07-26T05:53:54.059Z",
+    __v: 0,
+  },
+]
+
 const Syllabus = () => {
-  const [_for, setFor] = useState("")
   const [dept, setDept] = useState("")
-  const [syllabus, setSyllabus] = useState(null)
-  const { data } = useSelector((state) => state?.syllabus)
+  const [semester, setSemester] = useState("")
+  const [pageData, setPageData] = useState(null)
+  const [filteredData, setFilteredData] = useState(null)
+  // const { data } = useSelector((state) => state?.syllabus)
 
-  const selectDept = (e) => {
-    setDept(e.target.value)
-  }
+  useEffect(() => {
+    const pageDataSetter = () => {
+      if (!data) return
+      setPageData(data)
+    }
+    pageDataSetter()
+  }, [])
 
-  const selectSem = (e) => {
-    if (!data) return
-    setFor(e.target.value)
-    const filterArr = data?.filter((d) => Number(e.target.value) === d?.for)
-    setSyllabus(filterArr)
-  }
+  useEffect(() => {
+    const changeData = () => {
+      if (!dept || !semester || !pageData) return
+      if (dept === "default" || semester === "default") setFilteredData(null)
+      const filtered = pageData.filter(
+        (i) => i?.department === dept && i?.semester === Number(semester)
+      )
+      setFilteredData(filtered)
+    }
+    changeData()
+  }, [dept, semester, pageData])
 
   return (
     <div className="my-[100px]">
@@ -25,27 +66,27 @@ const Syllabus = () => {
       <div className="flex gap-2 mx-10">
         <div className=" border-[1px] w-[30%] px-6 py-5 border-my-green ">
           <select
-            onChange={selectDept}
+            onChange={(e) => setDept(e.target.value)}
             defaultValue={dept}
             className="bg-transparent cursor-pointer w-full px-3 py-2 border-[1px]  "
           >
-            <option value="">------Select Department------</option>
-            <option value="Core">Core CSE</option>
-            <option value="AI">CSE AI</option>
-            <option value="IoT">CSE IoT</option>
+            <option value="default">------Select Department------</option>
+            <option value="core">Core CSE</option>
+            <option value="ai">CSE AI</option>
+            <option value="iot">CSE IoT</option>
           </select>
         </div>
 
         <div className=" border-[1px] w-[70%] px-6 py-5 border-my-green ">
           <select
-            onClick={selectSem}
-            defaultValue={_for}
+            onClick={(e) => setSemester(e.target.value)}
+            defaultValue={semester}
             className={`${
               dept ? "cursor-pointer" : "cursor-not-allowed"
             } bg-transparent w-full px-3 py-2 border-[1px]  `}
             disabled={!dept}
           >
-            <option value="">------Select Semester------</option>
+            <option value="default">------Select Semester------</option>
             <option value="1">1st Semester</option>
             <option value="2">2nd Semester</option>
             <option value="3">3rd Semester</option>
@@ -59,7 +100,7 @@ const Syllabus = () => {
       </div>
       {/* )} */}
 
-      <SyllabusRow dept={dept} sem={_for}  />
+      <SyllabusRow filteredData={filteredData} />
     </div>
   )
 }
