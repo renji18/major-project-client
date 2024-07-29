@@ -10,7 +10,7 @@ export const uploadExcelSheet = createAsyncThunk(
       const fileData = new FormData()
       fileData.append("file", data)
       const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/admin/students/upload/new`,
+        `${process.env.REACT_APP_SERVER_URL}/admin/students/upload`,
         fileData
       )
       return response?.data

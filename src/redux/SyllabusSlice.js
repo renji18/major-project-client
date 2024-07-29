@@ -2,14 +2,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { toast } from "react-toastify"
 
+// Upload Syllabus
 export const uploadSyllabus = createAsyncThunk(
   "uploadSyllabus",
   async (data, { rejectWithValue }) => {
     try {
       const fileData = new FormData()
       fileData.append("syllabus", data?.image)
-      fileData.append("name", data?.name)
-      fileData.append("_for", data?._for)
+      fileData.append("semester", data?.semester)
+      fileData.append("department", data?.department)
+      fileData.append("subject", data?.subject)
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/admin/syllabus/upload`,
         fileData

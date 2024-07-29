@@ -28,7 +28,7 @@ export const deleteCircular = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_SERVER_URL}/admin/circular/edit/${data}`
+        `${process.env.REACT_APP_SERVER_URL}/admin/circular/delete/${data}`
       )
       return response?.data
     } catch (error) {
